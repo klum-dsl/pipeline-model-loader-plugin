@@ -34,13 +34,13 @@ public class ModelClassPathDecorator extends GroovyShellDecorator {
             return;
         }
 
-        GroovyClassLoader loader = shell.getClassLoader();
         ModelAction action = run.getAction(ModelAction.class);
 
         if (action == null) {
             return;
         }
 
+        GroovyClassLoader loader = shell.getClassLoader();
         for (ModelSource modelSource : action.getSources()) {
 
             try {
