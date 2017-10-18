@@ -39,6 +39,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.blackbuild.klum.ast</groupId>
+            <artifactId>klum-ast</artifactId>
+            <version>1.2.0-rc.7</version>
+        </dependency>
+        <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-cps-global-lib</artifactId>
             <version>${workflow-cps-shared-libs-plugin.version}</version>
