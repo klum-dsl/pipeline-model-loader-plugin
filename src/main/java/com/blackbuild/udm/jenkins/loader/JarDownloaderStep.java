@@ -123,13 +123,13 @@ public class JarDownloaderStep extends AbstractStepImpl {
             }
 
             if (modelClass == null && configClass != null) {
-                listener.getLogger().println("Create model with explicit script");
-                return modelClass.getMethod("createFrom", Class.class).invoke(null, configClass);
-            }
-
-            if (configClass != null) {
                 listener.getLogger().println("Create model from config script: " + configClass.getName());
                 return configClass.newInstance().run();
+            }
+
+            if (configClass != null && modelClass != null) {
+                listener.getLogger().println("Create model with explicit script");
+                return modelClass.getMethod("createFrom", Class.class).invoke(null, configClass);
             }
 
             listener.getLogger().println("No configuration class defined");
