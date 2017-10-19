@@ -118,8 +118,15 @@ public class JarDownloaderStep extends AbstractStepImpl {
             }
 
             if (modelClass != null && configClass == null) {
-                listener.getLogger().println("create Model from classpath hint");
-                return FactoryHelper.createFromClasspath(modelClass);
+                ClassLoader oldLoader = Thread.currentThread().getContextClassLoader();
+                try {
+                    Thread.currentThread().setContextClassLoader(loader);
+                    listener.getLogger().println("create Model from classpath hint");
+                    return FactoryHelper.createFromClasspath(modelClass);
+                } finally {
+                    Thread.currentThread().setContextClassLoader(oldLoader);
+                }
+
             }
 
             if (modelClass == null && configClass != null) {
